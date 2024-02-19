@@ -1,0 +1,7 @@
+*.exe
+!fasmw17332/*
+!nasm/
+*.lnk
+*.out
+*.obj
+*.o
