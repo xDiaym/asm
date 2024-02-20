@@ -1,6 +1,9 @@
 *.exe
 !fasmw17332/*
 !nasm/
+!turbo/*
+!dosfasm/*
+!dosnasm/*
 *.lnk
 *.out
 *.obj

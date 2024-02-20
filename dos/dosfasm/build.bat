@@ -1,0 +1,1 @@
+echo You must suffer with fasm. Build in Windows x86
