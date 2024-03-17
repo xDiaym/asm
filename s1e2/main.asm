@@ -11,6 +11,10 @@ is_prime:
     push    rbp
     mov     rbp, rsp
 
+    mov     rax, 0
+    cmp     rdi, 2
+    jl      .end
+
     mov     rax, 1
     cmp     rdi, 2
     je      .end
@@ -51,6 +55,10 @@ count_primes:
     mov     rbp, rsp
     sub     rsp, 16
 
+    mov     rax, 0
+    cmp     rdi, 1
+    jle     .end
+
     mov     qword [rbp-8], 0  ; primes counter
     mov     rbx, rdi  ; top limit
     shl     rbx, 1
@@ -65,6 +73,7 @@ count_primes:
     jl      .loop
 
     mov     rax, [rbp-8]
+    .end:
     mov     rsp, rbp
     pop     rbp
     pop     rbx
@@ -95,5 +104,5 @@ _start:
     syscall
 
 section   .data
-scan_fmt:   db  "%i", 0
-print_fmt:  db  "%i", 10, 0
+scan_fmt:   db  "%ld", 0
+print_fmt:  db  "%ld", 10, 0
