@@ -173,16 +173,47 @@ asm_strcspn:
 asm_strtok:
     push    rbp
     mov     rbp, rsp
+    sub     rsp, 16
 
-    test    rbp, rbp
-    jnz     .nonzero
+    test    rdi, rdi
+    jz      .zero_ptr
     mov     [saveptr], rdi
 
-    .nonzero:
+    .zero_ptr:
+    mov     rdi, [saveptr]
+    mov     [rbp-8], rdi
+    mov     [rbp-16], rsi
+    call    asm_strspn
+    add     [saveptr], rax
 
+    mov     r15, [saveptr]
+    movsx   r10, byte [r15]
+    test    r10, r10
+    jnz     .separate
     mov     rax, 0
+    jmp     .end
 
-    pop rbp
+    .separate:
+    mov     r15, [saveptr]
+    mov     r10, r15
+    mov     rdi, [rbp-8]
+    mov     rsi, [rbp-16]
+    call    asm_strcspn
+    add     [saveptr], rax
+
+    mov     r15, [saveptr]
+    movsx   r11, byte [r15]
+    test    r11, r11
+    jz      .preend
+    inc     qword [saveptr]
+    mov     byte [r15], 0
+
+    .preend:
+    mov     rax, r10
+
+    .end:
+    add     rsp, 16
+    pop     rbp
     ret
 
 section .data

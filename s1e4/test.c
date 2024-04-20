@@ -18,7 +18,13 @@ int main() {
   assert(asm_strcspn("world hhhhh", "h") == 6);
 
 
+  char str[] = "hello world!";
+  assert(asm_strtok(str, " ") == str);
+  assert(asm_strtok(NULL, " !") == str + 6);
+  assert(asm_strtok(NULL, " !") == NULL);
 
   assert(asm_strtok(NULL, NULL) == NULL);
+  assert(asm_strtok(str, NULL) == str);
+
   return 0;
 }
