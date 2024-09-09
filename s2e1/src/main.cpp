@@ -3,8 +3,8 @@
 
 extern "C" float f(float);  // NOLINT
 
-static constexpr float kStart = -1.0f;
-static constexpr float kEnd = 1.0f;
+static constexpr float kStart = -2.0f;
+static constexpr float kEnd = 2.0f;
 
 void GenerateCSVReport(float dh, std::size_t n) {
   float x = kStart;
