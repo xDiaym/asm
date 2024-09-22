@@ -1,0 +1,12 @@
+build*/
+.venv/
+__pycache__/
+
+plot/
+
+*.o
+*.pyc
+
+*.png
+*.jpg
+*.jpeg
