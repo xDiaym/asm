@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -ex
+
+mount() {
+    sudo mount -loop sub/file.ima ./mnt 
+}
+
+unmout() {
+    sudo umount ./mnt
+}
+
+if [[ -z $1 ]]; then
+    mount
+else
+    case $1 in
+    'mount')
+        mount
+        ;;
+    'umount')
+        umount
+        ;;
+    'unmount')
+        umount
+        ;;
+    *)
+        echo "unknown action $1"
+        exit 1
+    esac
+fi
